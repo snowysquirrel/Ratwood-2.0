@@ -509,7 +509,6 @@ GLOBAL_LIST_EMPTY(roundstart_races)
 		REMOVE_TRAIT(C, X, SPECIES_TRAIT)
 
 	for(var/skill as anything in inherent_skills)
-		C.adjust_skillrank(skill, -inherent_skills[skill], TRUE)for(var/skill as anything in inherent_skills)
 		C.adjust_skillrank(skill, -inherent_skills[skill], TRUE)
 
 
