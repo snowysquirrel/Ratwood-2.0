@@ -200,6 +200,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/goblinp,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
+	/datum/species/harpy,\
 )
 
 #define RACES_RESPECTED \
@@ -228,6 +229,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/kobold,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
+	/datum/species/harpy,\
 
 #define RACES_DESPISED \
 	/datum/species/goblinp,\
@@ -296,7 +298,9 @@ Balloon Alert / Floating Text defines
 	/datum/species/construct/porcelain,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
+	/datum/species/harpy,\
 )
+
 // Non-dwarf non-kobold non-goblin mostly
 #define NON_DWARVEN_RACE_TYPES list(\
 	/datum/species/human/northern,\
@@ -319,6 +323,7 @@ Balloon Alert / Floating Text defines
 	/datum/species/construct/porcelain,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
+	/datum/species/harpy,\
 )
 // Non-elf non-dwarf non-kobold non-goblin mostly
 #define HUMANLIKE_RACE_TYPES list(\
@@ -338,7 +343,9 @@ Balloon Alert / Floating Text defines
 	/datum/species/construct/porcelain,\
 	/datum/species/dullahan,\
 	/datum/species/lamia,\
+	/datum/species/harpy,\
 )
+
 #define ALL_CLERIC_PATRONS list(/datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/undivided) // Currently unused.
 
 #define ALL_PALADIN_PATRONS list(/datum/patron/divine/undivided, /datum/patron/divine/astrata, /datum/patron/divine/noc, /datum/patron/divine/abyssor, /datum/patron/divine/dendor, /datum/patron/divine/necra, /datum/patron/divine/pestra, /datum/patron/divine/ravox, /datum/patron/divine/malum, /datum/patron/divine/eora, /datum/patron/divine/xylix, /datum/patron/old_god) // Currently unused.
