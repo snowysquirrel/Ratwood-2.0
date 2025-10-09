@@ -359,6 +359,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 	data += "<font color='#99dfd5'><span class='bold'>Lupians/Venardines & Tabaxi:</span></font> [GLOB.azure_round_stats[STATS_ALIVE_LUPIANS] + GLOB.azure_round_stats[STATS_ALIVE_VULPS] + GLOB.azure_round_stats[STATS_ALIVE_TABAXI]]<br>"
 	data += "<font color='#c0c6c7'><span class='bold'>Constructs & Dolls:</span></font> [GLOB.azure_round_stats[STATS_ALIVE_CONSTRUCTS]]<br>"
 	data += "<font color='#9ACD32'><span class='bold'>Fluvian & Axians:</span></font> [GLOB.azure_round_stats[STATS_ALIVE_MOTHS] + GLOB.azure_round_stats[STATS_ALIVE_AXIAN]]<br>"
+	data += "<font color='#2be2e9'><span class='bold'>Harpies & Lamia:</span></font> [GLOB.azure_round_stats[STATS_ALIVE_HARPIES] + GLOB.azure_round_stats[STATS_ALIVE_LAMIA]]<br>"
 	data += "</div>"
 
 	data += "</div></div>"
