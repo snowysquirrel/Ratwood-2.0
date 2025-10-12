@@ -34,7 +34,7 @@
 	icon = 'icons/roguetown/weapons/32.dmi'
 	icon_state = "harpy_talon" // coder kitbash 5 minute sprite ugh
 	drop_sound = 'sound/blank.ogg'
-	gripped_intents = list(/datum/intent/wing/cut, /datum/intent/wing/shred, /datum/intent/wing/grab, /datum/intent/wing/pick)
+	gripped_intents = list(/datum/intent/wing/cut, /datum/intent/wing/shred, /datum/intent/wing/grab)
 	associated_skill = /datum/skill/combat/unarmed
 	w_class = WEIGHT_CLASS_HUGE
 	wlength = WLENGTH_GREAT
@@ -44,8 +44,8 @@
 	max_integrity = 250
 	resistance_flags = INDESTRUCTIBLE | LAVA_PROOF | FIRE_PROOF | UNACIDABLE | ACID_PROOF
 	no_effect = FALSE
-	pickup_sound = 'sound/blank.ogg'
-	sheathe_sound = 'sound/blank.ogg'
+	//pickup_sound = 'sound/blank.ogg'
+	//sheathe_sound = 'sound/blank.ogg'
 
 	var/repair_amount = 5 //The amount of integrity the tattoos will repair themselves
 	var/repair_time = 250 //The amount of time between each repair
@@ -106,17 +106,6 @@
 	damfactor = 1.3
 	blade_class = BCLASS_PICK
 
-/datum/intent/wing/pick
-	name = "talon pick"
-	icon_state = "inpick"
-	attack_verb = list("stabs", "impales")
-	hitsound = list('sound/combat/hits/bladed/genstab (1).ogg', 'sound/combat/hits/bladed/genstab (2).ogg', 'sound/combat/hits/bladed/genstab (3).ogg')
-	penfactor = 75
-	clickcd = 14
-	swingdelay = 12
-	damfactor = 1.1
-	blade_class = BCLASS_PICK
-
 /obj/item/rogueweapon/huntingknife/idagger/harpy_talons/equipped(mob/user, slot, initial)
 	. = ..()
 	wielded = TRUE
@@ -149,26 +138,32 @@
 	if(user.used_intent.type == /datum/intent/wing/grab)
 		if(isliving(target))
 			if(target != user)
-				if(user.pulling)
-					user.stop_pulling(TRUE)
-					return ..() // remove ..() if problems arise
-				if(target.checkdefense(user.used_intent, user))
-					return FALSE
-				user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src) // STATE = 1 OH GOD!! GRAB STATE PASSIVE = 0, AGRO = 1
-				/*
-				if(user.grab_state < AGRESSIVE)
-				if(user.pulling)
-					target.grippedby(user, FALSE)
-				*/
-				if(user.pulling)
-					to_chat(user, span_bloody("I am carrying [target] with my talons!! Ha ha ha!!"))
-					var/obj/item/grabbing/I = user.get_inactive_held_item()
-					if(istype(I, /obj/item/grabbing/))
-						I.icon_state = null
-					target.apply_status_effect(/datum/status_effect/debuff/harpy_passenger)
-					user.buckle_mob(target, TRUE, TRUE, FALSE, 0, 0)
-					user.buckle_mob(target, TRUE, TRUE, FALSE, 0, 0) // brute forcing this shit vro..
-					return ..() // remove ..() if problems arise
+				if(!(target.mobility_flags & MOBILITY_STAND))
+					if(!HAS_TRAIT(target, TRAIT_BIGGUY))
+						if(user.pulling)
+							user.stop_pulling(TRUE)
+							return ..() // remove ..() if problems arise
+						if(target.checkdefense(user.used_intent, user))
+							return FALSE
+						user.start_pulling(target, state = 1, supress_message = TRUE, item_override = src) // STATE = 1 OH GOD!! GRAB STATE PASSIVE = 0, AGRO = 1
+						/*
+						if(user.grab_state < AGRESSIVE)
+						if(user.pulling)
+							target.grippedby(user, FALSE)
+						*/
+						if(user.pulling)
+							to_chat(user, span_bloody("I am carrying [target] with my talons!! Ha ha ha!!"))
+							var/obj/item/grabbing/I = user.get_inactive_held_item()
+							if(istype(I, /obj/item/grabbing/))
+								I.icon_state = null
+							target.apply_status_effect(/datum/status_effect/debuff/harpy_passenger)
+							user.buckle_mob(target, TRUE, TRUE, FALSE, 0, 0)
+							user.buckle_mob(target, TRUE, TRUE, FALSE, 0, 0) // brute forcing this shit vro..
+							return ..() // remove ..() if problems arise
+					else
+						to_chat(user, span_bloody("THEY'RE TOO BIG!"))
+				else
+					to_chat(user, span_bloody("I must get them off their feet first!"))
 	else
 		return ..()
 
@@ -198,3 +193,6 @@
 /obj/item/harpy_leg/intercept_zImpact(atom/movable/AM, levels = 1) // with this shit it doesn't generate "X falls through open space". thank u guppyluxx
     . = ..()
     . |= FALL_NO_MESSAGE
+
+
+//test
